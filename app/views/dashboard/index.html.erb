@@ -1,11 +1,10 @@
 
-<div>
-  <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Appliances</h3>
-          </div>
-          <div class="panel-body">
-<div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Appliances</h3>
+  </div>
+  <div class="panel-body">
+  <div>
   <div class="col-xs-4">
     <%= render partial: "all_target_chart"%>
   </div>
@@ -20,7 +19,9 @@
 <th>Customer</th>
 <th>UP Target </th>
 <th>Down Target </th>
-<th>Update Status </th>
+<%if current_user.admin? %>
+  <th>Update Status </th>
+<%end%>
 </thead>
 <tbody>
 <%down_array = []%>
@@ -35,8 +36,11 @@
 
   <td><%= status_hash[1] || 0 %></td>
   <td><%= status_hash[0] || 0%></td>
-  <td>
-        <%= link_to '<i class="glyphicon glyphicon-repeat"></i> Ping Test '.html_safe, dashboard_update_path(id:appliance.id), class: 'btn btn-success btn-xs' %></td>
+  <%if current_user.admin? %>
+    <td>
+        <%= link_to '<i class="glyphicon glyphicon-repeat"></i> Ping Test '.html_safe, dashboard_update_path(id:appliance.id), class: 'btn btn-success btn-xs' %>
+    </td>
+  <%end%>
 </tr>
 <% end %>
 </tbody>
