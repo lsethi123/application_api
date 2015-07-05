@@ -20,13 +20,14 @@
 <th>Customer</th>
 <th>UP Target </th>
 <th>Down Target </th>
+<th>Update Status </th>
 </thead>
 <tbody>
 <%down_array = []%>
 <%up_array = []%>
 <% @appliances.each do|appliance|%>
   <tr>
-<td><%= appliance.name%></td>
+<td><%=link_to appliance.name,dashboard_show_path(id:appliance.id)%></td>
   <td><%= appliance.customer%></td>
   <%status_hash =  appliance.targets.group(:status).count%>
   <%down_array << status_hash[0] || 0 %>
@@ -34,6 +35,8 @@
 
   <td><%= status_hash[1] || 0 %></td>
   <td><%= status_hash[0] || 0%></td>
+  <td>
+        <%= link_to '<i class="glyphicon glyphicon-repeat"></i> Ping Test '.html_safe, dashboard_update_path(id:appliance.id), class: 'btn btn-success btn-xs' %></td>
 </tr>
 <% end %>
 </tbody>

@@ -37,3 +37,4 @@ gem 'will_paginate-bootstrap'
 gem 'gon'
 ## authentication gem
 gem 'devise'
+gem 'net-ping'
