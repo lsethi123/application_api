@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ApplianceApi</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Bootstrap App" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Bootstrap App" %>">
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+   <%= include_gon %>
   <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <div class ="container">
+      <main role="main" style="padding-top:55px;">
+         <%= render 'layouts/messages' %>
+         <%= yield %>
+      </main>
+    </div>
+  </body>
 </html>

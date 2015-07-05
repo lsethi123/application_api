@@ -1,0 +1,5 @@
+<%ping_status_hash  = []%>
+
+<%= javascript_tag do %>
+  window.ping_status_hash = <%= raw ping_status_hash.to_json %>;
+<% end %>

@@ -1,10 +1,12 @@
+
 APPLIANCES = 1000
 MAX_TARGETS_PER_APPLIANCE = 5
 
 def randomize(string)
   "#{rand 100000}-#{string}"
 end
-
+  User.create(email:"user@example.com",password:"12345678",
+    password_confirmation:"12345678",role:1)
 def create_appliance
   appliance = Appliance.create! name:     randomize(Faker::Internet.domain_name),
                                 customer: Faker::Company.name

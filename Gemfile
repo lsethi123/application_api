@@ -12,7 +12,7 @@ gem 'turbolinks'
 gem 'puma'
 gem 'slim-rails'
 gem 'secure_headers'
-gem 'ffaker'
+gem 'faker'
 gem 'timecop'
 
 group :development, :test do
@@ -29,3 +29,11 @@ end
 group :development do
   gem 'spring'
 end
+
+##  bootstrap UI gems
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+gem 'will_paginate-bootstrap'
+gem 'gon'
+## authentication gem
+gem 'devise'

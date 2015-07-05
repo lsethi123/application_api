@@ -1,0 +1,49 @@
+
+<div>
+  <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Appliances</h3>
+          </div>
+          <div class="panel-body">
+<div>
+  <div class="col-xs-4">
+    <%= render partial: "all_target_chart"%>
+  </div>
+  <div class="col-xs-8">
+    <%= render partial: "page_target_chart"%>
+  </div>
+</div>
+<div class="col-xs-12">
+<table class="table table-bordered table-hover ">
+<thead style="background-color: #F5F5F5; ">
+<th>Name</th>
+<th>Customer</th>
+<th>UP Target </th>
+<th>Down Target </th>
+</thead>
+<tbody>
+<%down_array = []%>
+<%up_array = []%>
+<% @appliances.each do|appliance|%>
+  <tr>
+<td><%= appliance.name%></td>
+  <td><%= appliance.customer%></td>
+  <%status_hash =  appliance.targets.group(:status).count%>
+  <%down_array << status_hash[0] || 0 %>
+  <%up_array << status_hash[1] || 0 %>
+
+  <td><%= status_hash[1] || 0 %></td>
+  <td><%= status_hash[0] || 0%></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<%= will_paginate @appliances, renderer: BootstrapPagination::Rails, class:"pull-right"%>
+</div>
+</div>
+
+
+<%= javascript_tag do %>
+  window.down_array = <%= raw down_array.to_json %>;
+  window.up_array = <%= raw up_array.to_json %>;
+<% end %>

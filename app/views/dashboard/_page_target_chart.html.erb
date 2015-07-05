@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <h3 class="panel-title">Pagewise Target Details</h3>
+  </div>
+  <div class="panel-body">
+  <canvas id="myChart2" width="700px" height="400px"></canvas>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function(){
+    var ctx = $("#myChart2").get(0).getContext("2d");
+    var data = {
+    labels: gon.names,
+    datasets: [
+
+
+        {
+            label: "My Second dataset",
+            fillColor: "rgba(85, 202, 48, 1)",
+            strokeColor: "rgba(85, 202, 48, 0.75)",
+            highlightFill: "rgba(85, 202, 48, 0.8)",
+            highlightStroke: "rgba(85, 202, 48, 0.5)",
+            data: window.up_array
+        },
+        {
+            label: "My First dataset",
+            fillColor: "rgba(247, 70, 74, 1);",
+            strokeColor: "rgba(247, 70, 74, 0.75);",
+            highlightFill: "rgba(247, 70, 74, 0.8);",
+            highlightStroke: "rgba(247, 70, 74, 0.5);",
+            data: window.down_array
+        },
+    ]
+};
+var myBarChart = new Chart(ctx).Bar(data, {});
+  });
+</script>
