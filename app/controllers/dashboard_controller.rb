@@ -5,14 +5,14 @@ class DashboardController < ApplicationController
     gon.target_status = target_status
     gon.names = @appliances.map(&:name)
   end
+
   def show
     @appliance = Appliance.includes(:targets).find(params[:id])
   end
+
   def update
-    applaince = Appliance.find(params[:id])
-    applaince.targets.each do |target|
-      target.check_and_update_status
-    end
+    appliance = Appliance.find(params[:id])
+    appliance.update_appliance_targets
     redirect_to :back
   end
 end

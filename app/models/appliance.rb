@@ -5,4 +5,11 @@ class Appliance < ActiveRecord::Base
                        presence:   true
 
   validates :customer, presence:   true
+
+  def update_appliance_targets
+    self.targets.each do |target|
+      target.check_and_update_status
+    end
+  end
+
 end
