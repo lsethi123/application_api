@@ -8,4 +8,13 @@ describe Appliance, :type => :model do
       expect(appliance.save).to be(false)
     end
   end
+  describe "#update_appliance_targets" do
+    subject(:appliance) { Appliance.first }
+    it "update each appliance target" do
+      expect(appliance.targets).each do |target|
+        expect(target.check_and_update_status).to be(true)
+      end
+    end
+  end
+
 end
